@@ -98,9 +98,11 @@ export default function Home() {
       <div className="w-full max-w-[450px]">
         {/* CRM logo branding */}
         <div className="text-center mb-8 flex flex-col items-center">
-          <div className="w-12 h-12 bg-[#61191c] rounded-2xl flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-[#61191c]/20">
-            L
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Leela Logo" 
+            className="h-16 w-auto object-contain rounded-xl mb-3 shadow-lg shadow-[#61191c]/20" 
+          />
           <h1 className="text-2xl font-black tracking-tight text-slate-900">
             Leela<span className="text-[#61191c]">CRM</span>
           </h1>
