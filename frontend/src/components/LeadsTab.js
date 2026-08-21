@@ -613,15 +613,17 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                         
                         {openStatusDropdownId === lead._id && (
                           <>
-                            <div className="fixed inset-0 z-40" onClick={() => setOpenStatusDropdownId(null)}></div>
+                            <div className="fixed inset-0 z-40" onClick={(e) => { e.stopPropagation(); setOpenStatusDropdownId(null); }}></div>
                             <div
+                              onClick={(e) => e.stopPropagation()}
                               style={{ top: `${dropdownPos.top}px`, left: `${dropdownPos.left}px` }}
                               className="fixed z-50 w-[140px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-1.5 animate-in fade-in zoom-in-95 duration-100 flex flex-col gap-0.5"
                             >
                               {['New', 'Contacted', 'Converted', 'Lost'].map((st) => (
                                 <button
                                   key={st}
-                                  onClick={() => {
+                                  onClick={(e) => {
+                                    e.stopPropagation();
                                     onUpdateStatus(lead._id, st);
                                     setOpenStatusDropdownId(null);
                                   }}
@@ -658,8 +660,9 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                             
                             {openProductDropdownId === lead._id && (
                               <>
-                                <div className="fixed inset-0 z-40" onClick={() => setOpenProductDropdownId(null)}></div>
+                                <div className="fixed inset-0 z-40" onClick={(e) => { e.stopPropagation(); setOpenProductDropdownId(null); }}></div>
                                 <div
+                                  onClick={(e) => e.stopPropagation()}
                                   style={{ top: `${dropdownPos.top}px`, left: `${dropdownPos.left}px` }}
                                   className="fixed z-50 w-[270px] max-h-[280px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 animate-in fade-in zoom-in-95 duration-100 flex flex-col gap-1.5"
                                 >
@@ -670,6 +673,7 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                                       placeholder="Search product..."
                                       value={productSearch}
                                       onChange={(e) => setProductSearch(e.target.value)}
+                                      onClick={(e) => e.stopPropagation()}
                                       className="w-full pl-7 pr-2.5 py-1.5 text-xs bg-slate-50/90 border border-slate-200/90 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#61191c]/20 focus:border-[#61191c] text-slate-800 placeholder:text-slate-400 font-normal transition-all"
                                       autoFocus
                                     />
@@ -681,7 +685,8 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                                   {/* Filtered Products List */}
                                   <div className="overflow-y-auto max-h-[200px] flex flex-col gap-0.5 pr-0.5">
                                     <button
-                                      onClick={() => {
+                                      onClick={(e) => {
+                                        e.stopPropagation();
                                         onUpdateStatus(lead._id, 'Converted', null);
                                         setOpenProductDropdownId(null);
                                       }}
@@ -694,7 +699,8 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                                       .map((item) => (
                                         <button
                                           key={item._id}
-                                          onClick={() => {
+                                          onClick={(e) => {
+                                            e.stopPropagation();
                                             onUpdateStatus(lead._id, 'Converted', item._id);
                                             setOpenProductDropdownId(null);
                                           }}
@@ -735,13 +741,15 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                         
                         {openConsultantDropdownId === lead._id && (
                           <>
-                            <div className="fixed inset-0 z-40" onClick={() => setOpenConsultantDropdownId(null)}></div>
+                            <div className="fixed inset-0 z-40" onClick={(e) => { e.stopPropagation(); setOpenConsultantDropdownId(null); }}></div>
                             <div
+                              onClick={(e) => e.stopPropagation()}
                               style={{ top: `${dropdownPos.top}px`, left: `${dropdownPos.left}px` }}
                               className="fixed z-50 w-[170px] max-h-[220px] overflow-y-auto bg-white border border-slate-200 rounded-2xl shadow-2xl p-1.5 animate-in fade-in zoom-in-95 duration-100 flex flex-col gap-0.5"
                             >
                               <button
-                                onClick={() => {
+                                onClick={(e) => {
+                                  e.stopPropagation();
                                   onAssignConsultant(lead._id, '');
                                   setOpenConsultantDropdownId(null);
                                 }}
@@ -754,7 +762,8 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                               {consultants.map((c) => (
                                 <button
                                   key={c._id}
-                                  onClick={() => {
+                                  onClick={(e) => {
+                                    e.stopPropagation();
                                     onAssignConsultant(lead._id, c._id);
                                     setOpenConsultantDropdownId(null);
                                   }}
@@ -771,6 +780,7 @@ document.getElementById('shopify-lead-form').addEventListener('submit', async fu
                           </>
                         )}
                       </td>
+
 
                       {/* Created At Date & Time */}
                       <td className="px-3 py-2.5 align-top text-[10.5px] whitespace-nowrap">
